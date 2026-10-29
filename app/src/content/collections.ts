@@ -20,7 +20,7 @@ export const collections = {
     subtitle: '',
     kicker: 'From the notebook',
     description: 'Personal notes on everyday life, learning, and working in Tokyo.',
-    path: 'blog.html#notes',
+    path: 'notes/',
     tags: ['Life', 'Learning']
   }
 };

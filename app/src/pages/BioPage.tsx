@@ -66,7 +66,7 @@ export function BioPage() {
       <section className="portfolio-section portfolio-background" aria-labelledby="background-title">
         <div className="portfolio-background-intro">
           <p className="portfolio-kicker">Behind the work</p>
-          <h2 id="background-title">Cardiovascular research<br /><em>& clinical education.</em></h2>
+          <h2 id="background-title">Cardiovascular Research<br />&amp; <span>Clinical Education</span></h2>
           <p>I completed my Ph.D. at the University of Tokyo in March 2026 and joined Edwards Lifesciences as a Clinical Education Senior Specialist in TMTT. My research background is in heart failure and RNA metabolism.</p>
           <a className="portfolio-text-link" href="experience.html">Full experience <FluentIcon name="arrow" size={14} /></a>
         </div>

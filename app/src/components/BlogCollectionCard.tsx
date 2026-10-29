@@ -8,7 +8,7 @@ export function BlogCollectionCard({ collection, compact = false }: { collection
       <Heading id={`collection-${collection.id}`}>
         <a href={collection.url}>{collection.title}<span aria-hidden="true">↗</span></a>
       </Heading>
-      <p className="portfolio-collection-card-subtitle"><em>{collection.subtitle}</em></p>
+      {collection.subtitle ? <p className="portfolio-collection-card-subtitle"><em>{collection.subtitle}</em></p> : null}
       <p className="portfolio-collection-card-description">{collection.description}</p>
       {!compact ? (
         <ul className="portfolio-collection-latest" aria-label={`${collection.title} recent articles`}>

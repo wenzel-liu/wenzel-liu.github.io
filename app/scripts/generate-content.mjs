@@ -34,12 +34,12 @@ for (const article of articles) {
   const related = articles.filter(other => other.collection === article.collection && other.path !== article.path);
   await writePage(article.path, article.title, article.description, renderArticle(article, related), article.lang, article.math, article);
 }
-for (const collection of ['medprism','sci-industrialist']) {
+for (const collection of Object.keys(collections)) {
   const items = articles.filter(article => article.collection === collection);
   await writePage(`${collection}/index.html`, collections[collection].title, collections[collection].description, renderCollection(collection, items));
 }
 const metadata = articles.map(({ html, headings, math, source_id, ...metadata }) => metadata);
-await writeFile(path.join(app, 'src/content/article-index.ts'), `// Generated from _content by npm run content:generate. No article bodies are shipped here.\nexport const articleIndex = ${JSON.stringify(metadata,null,2)};\nexport const personalNotes = ${JSON.stringify(metadata.filter(article => article.collection === 'notes').map(article => ({title: article.title, description: article.description, href: '/' + article.path})), null, 2)};\n`);
+await writeFile(path.join(app, 'src/content/article-index.ts'), `// Generated from _content by npm run content:generate. No article bodies are shipped here.\nexport const articleIndex = ${JSON.stringify(metadata,null,2)};\nexport const personalNotes = ${JSON.stringify(metadata.filter(article => article.collection === 'notes').map(article => ({title: article.title, description: article.description, date: article.date, category: article.category, href: '/' + article.path})), null, 2)};\n`);
 await writeFile(path.join(app, '.content-pages.json'), JSON.stringify(pagePaths, null, 2) + '\n');
 await rm(renderer);
-console.log(`Generated ${articles.length} independent articles and 2 project collections.`);
+console.log(`Generated ${articles.length} independent articles and ${Object.keys(collections).length} collections.`);

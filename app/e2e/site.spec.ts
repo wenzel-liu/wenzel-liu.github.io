@@ -7,9 +7,8 @@ const pages = [
   { file: 'projects.html', title: /Projects \| Wenhao Liu/i },
   { file: 'experience.html', title: /Experience \| Wenhao Liu/i },
   { file: 'research.html', title: /Papers & Talks \| Wenhao Liu/i },
-  { file: 'posts/academic-life-in-tokyo.html', title: /东京学术生活/ },
-  { file: 'posts/rna-metabolism-heart-disease.html', title: /RNA代谢/ },
-  { file: 'posts/welcome-to-my-blog.html', title: /欢迎来到我的博客/ }
+  { file: 'notes/index.html', title: /Notes & essays \| Wenhao Liu/i },
+  { file: 'posts/rna-metabolism-heart-disease.html', title: /RNA代谢/ }
 ];
 
 test.describe('site smoke checks', () => {

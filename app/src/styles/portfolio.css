@@ -137,7 +137,7 @@ html[data-theme='dark'] .fds-app-shell--portfolio {
 .portfolio-tags > li { padding: 4px 9px; border-radius: 3px; background: var(--portfolio-surface); color: var(--portfolio-muted); font-size: 12px; line-height: 1.6; }
 .portfolio-background { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 72px; }
 .portfolio-background-intro > h2 { font-size: 33px; line-height: 1.3; }
-.portfolio-background-intro h2 > em { color: var(--portfolio-accent); font-weight: 400; }
+.portfolio-background-intro > h2 > span { color: var(--portfolio-accent); }
 .portfolio-background-intro > p:not(.portfolio-kicker) { margin: 22px 0 12px; color: var(--portfolio-muted); font-size: 16px; line-height: 1.75; }
 .portfolio-experience { display: grid; gap: 24px; }
 .portfolio-experience > article { padding-bottom: 22px; border-bottom: 1px solid var(--portfolio-line); }
@@ -289,6 +289,8 @@ html[data-theme] .fds-app-shell--portfolio .nav-link.active { box-shadow: none; 
 .portfolio-article-header h1 { max-width: 900px; margin: 0 0 24px; font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 500; line-height: 1.45; letter-spacing: -.025em; text-wrap: balance; }
 .portfolio-article-header .portfolio-kicker { display: flex; flex-wrap: wrap; gap: 12px; }
 .portfolio-article-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); align-items: start; gap: 88px; padding: 48px 0 60px; }
+.portfolio-article--short { max-width: 760px; margin-inline: auto; }
+.portfolio-article--short .portfolio-article-layout { display: block; }
 .portfolio-toc { position: sticky; top: 112px; }
 .portfolio-toc nav { display: grid; gap: 3px; }
 .portfolio-toc a { padding: 10px 0; font-size: 14px; line-height: 1.6; color: var(--portfolio-muted); }
@@ -361,11 +363,35 @@ html[data-theme] .fds-app-shell--portfolio .nav-link.active { box-shadow: none; 
 .portfolio-collection-intro { padding-bottom: 56px; max-width: 920px; }
 .portfolio-collection-intro h1 { margin: 0 0 12px; font-family: var(--font-display); font-weight: 450; font-size: clamp(44px, 6.8vw, 80px); line-height: 1.1; letter-spacing: -.045em; overflow-wrap: anywhere; }
 .portfolio-collection-subtitle { margin: 0 0 26px; color: var(--portfolio-accent); font-family: var(--font-display); font-size: clamp(20px, 2.4vw, 28px); line-height: 1.45; }
+.portfolio-collection-intro--with-mark { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) clamp(136px, 17vw, 196px); align-items: center; gap: clamp(32px, 5vw, 72px); max-width: none; }
+.portfolio-collection-mark { display: block; width: 100%; }
+.portfolio-collection-mark--sci-industrialist {
+  /* The original PNGs use a transparent cutout. Invert their alpha masks to
+     display that exact silhouette; sizing compensates for their different margins. */
+  --collection-mark-image: url('/assets/images/sci-industrialist/Sci-Industrialist_icon_1.png');
+  --collection-mark-size: 140.37% 149.45%;
+  --collection-mark-position: 43.46% 56.72%;
+  aspect-ratio: 1459 / 1355;
+  background-color: #142235;
+  mask-image: linear-gradient(#000 0 0), var(--collection-mark-image);
+  mask-size: 200% 200%, var(--collection-mark-size);
+  mask-position: center, var(--collection-mark-position);
+  mask-repeat: no-repeat;
+  mask-composite: subtract;
+}
+html[data-theme='dark'] .portfolio-collection-mark--sci-industrialist {
+  --collection-mark-image: url('/assets/images/sci-industrialist/Sci-Industrialist_icon_2.png');
+  --collection-mark-size: 199.76% 267.36%;
+  --collection-mark-position: 50% 50.31%;
+  background-color: var(--portfolio-ink);
+}
+.portfolio-collection-mark--medprism { height: auto; aspect-ratio: 1; border: 1px solid var(--portfolio-line); border-radius: 10px; }
 .portfolio-collection-body { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 72px; padding-bottom: 48px; }
 .portfolio-library-aside { padding-top: 26px; border-top: 1px solid var(--portfolio-line); }
 .portfolio-library-aside h2 { font-size: 30px; margin-bottom: 16px; }
 .portfolio-library-aside > p:not(.portfolio-kicker) { color: var(--portfolio-muted); font-size: 14px; }
 .portfolio-library-aside .portfolio-tags { margin: 24px 0; }
+.portfolio-library-links { display: flex; flex-direction: column; align-items: flex-start; }
 .portfolio-library-row { grid-template-columns: 28px minmax(0, 1fr); gap: 20px; }
 .portfolio-library-row .portfolio-note-action { grid-column: 2; }
 .portfolio-library-row h3 { font-family: var(--font-display); font-size: 26px; line-height: 1.5; overflow-wrap: anywhere; }
@@ -373,6 +399,7 @@ html[data-theme] .fds-app-shell--portfolio .nav-link.active { box-shadow: none; 
 .portfolio-toc details summary { padding: 0 0 12px; cursor: pointer; font-size: 13px; font-weight: 600; }
 .portfolio-toc details nav { max-height: calc(100svh - 185px); overflow-y: auto; padding-right: 12px; }
 .portfolio-prose img { display: block; max-width: 100%; height: auto; margin: 28px auto; }
+.portfolio-prose img[src$="/sci-industrialist-construction.png"] { background: #f6f5f0; padding: 16px; border-radius: 6px; }
 .portfolio-table-scroll { max-width: 100%; overflow-x: auto; margin: 28px 0; overscroll-behavior-x: contain; }
 .portfolio-prose table { font-family: var(--font-ui); width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.7; }
 .portfolio-prose :is(th,td) { border: 1px solid var(--portfolio-line); padding: 12px 14px; min-width: 140px; text-align: left; vertical-align: top; }
@@ -388,6 +415,9 @@ html[data-theme] .fds-app-shell--portfolio .nav-link.active { box-shadow: none; 
 }
 @media (max-width: 720px) {
   .portfolio-collection-intro { padding-bottom: 32px; }
+  .portfolio-collection-intro--with-mark { display: block; }
+  .portfolio-collection-mark { position: absolute; top: -68px; right: 0; width: 56px; }
+  .portfolio-collection-mark--medprism { top: -80px; width: 72px; border-radius: 6px; }
   .portfolio-library-back { margin-bottom: 24px; }
   .portfolio-collection-body { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .portfolio-library-aside .portfolio-tags { margin: 16px 0; }
@@ -406,6 +436,7 @@ html[data-theme] .fds-app-shell--portfolio .nav-link.active { box-shadow: none; 
 
 /* Writing collections are separate from independent software projects. */
 .portfolio-blog-collections { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px; }
+.portfolio-notes-collection { margin-top: 24px; }
 .portfolio-blog > .portfolio-page-intro { padding-bottom: 40px; }
 .portfolio-collection-card { min-width: 0; display: flex; flex-direction: column; padding: 26px 0 30px; border-top: 2px solid var(--portfolio-line); }
 .portfolio-collection-card > :is(h2,h3) { margin: 0 0 12px; font-family: var(--font-display); font-size: 32px; font-weight: 450; line-height: 1.2; letter-spacing: -.025em; }

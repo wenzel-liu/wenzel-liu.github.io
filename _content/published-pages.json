@@ -4,6 +4,12 @@
   "projects.html",
   "experience.html",
   "research.html",
+  "sci-industrialist/the-idea-behind-the-symbol/index.html",
+  "notes/a-phrase-after-a-business-trip/index.html",
+  "notes/from-understanding-to-teaching/index.html",
+  "notes/taking-time-to-ask/index.html",
+  "notes/a-weekend-in-oarai/index.html",
+  "notes/starting-a-spoken-journal/index.html",
   "sci-industrialist/talent-attraction-score/index.html",
   "sci-industrialist/talent-utility-equation/index.html",
   "medprism/novartis-research-overview/index.html",
@@ -11,9 +17,8 @@
   "medprism/lilly-research-pipeline/index.html",
   "sci-industrialist/american-factory/index.html",
   "sci-industrialist/defeat-of-the-west/index.html",
-  "posts/welcome-to-my-blog.html",
   "posts/rna-metabolism-heart-disease.html",
-  "posts/academic-life-in-tokyo.html",
   "medprism/index.html",
-  "sci-industrialist/index.html"
+  "sci-industrialist/index.html",
+  "notes/index.html"
 ]

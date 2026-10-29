@@ -19,8 +19,8 @@ describe('nav helpers', () => {
   });
 
   it('keeps the blog section active while reading a nested article', () => {
-    expect(isNavItemActive('/posts/academic-life-in-tokyo.html', 'blog.html')).toBe(true);
-    expect(isNavItemActive('/posts/academic-life-in-tokyo.html', 'index.html')).toBe(false);
+    expect(isNavItemActive('/posts/rna-metabolism-heart-disease.html', 'blog.html')).toBe(true);
+    expect(isNavItemActive('/posts/rna-metabolism-heart-disease.html', 'index.html')).toBe(false);
     expect(isNavItemActive('/medprism/', 'blog.html')).toBe(true);
     expect(isNavItemActive('/sci-industrialist/abundance/', 'blog.html')).toBe(true);
   });
