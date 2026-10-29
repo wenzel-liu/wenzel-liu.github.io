@@ -168,11 +168,11 @@ export const personalNotes = [
   {
     "title": "欢迎来到我的博客",
     "description": "关于这个网站、研究兴趣与写作的起点。",
-    "href": "/lwh/posts/welcome-to-my-blog.html"
+    "href": "/posts/welcome-to-my-blog.html"
   },
   {
     "title": "东京学术生活：在日本进行心血管研究的体验",
     "description": "在东京开展研究、适应学术文化与日常生活的记录。",
-    "href": "/lwh/posts/academic-life-in-tokyo.html"
+    "href": "/posts/academic-life-in-tokyo.html"
   }
 ];

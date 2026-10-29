@@ -11,7 +11,7 @@ tags: ["Book reviews"]
 source_id: "214aeaa78a4c807db3c8d2aef336ca7b"
 ---
 
-![Abundance 书籍封面](/lwh/assets/articles/abundance-cover.png)
+![Abundance 书籍封面](/assets/articles/abundance-cover.png)
 
 ## 核心理论与主张
 

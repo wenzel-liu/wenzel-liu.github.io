@@ -29,7 +29,7 @@ tags: ["Biopharma", "Clinical Research"]
 Write the article here.
 ```
 
-The file's collection must match its folder. Optional `updated` records a substantive update date. The title is rendered by the template, so start body headings at `##`. Store images in `assets/articles/` and reference `/lwh/assets/articles/filename.png`.
+The file's collection must match its folder. Optional `updated` records a substantive update date. The title is rendered by the template, so start body headings at `##`. Store images in `assets/articles/` and reference `/assets/articles/filename.png`.
 
 Use `$...$` for inline equations and `$$...$$` for display equations. Formula layout is produced at build time; no math engine is downloaded by readers. Wide tables scroll within the reading column. Do not change a published slug without adding a redirect.
 
