@@ -126,7 +126,7 @@ export function SiteShell({ children, currentPath: suppliedPath }: SiteShellProp
         <span className="sep">·</span>
         <span>Tokyo, Japan</span>
         <span className="sep">·</span>
-        <a href="https://github.com/wenzel-liu/lwh" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/wenzel-liu/wenzel-liu.github.io" target="_blank" rel="noopener noreferrer">
           View source
         </a>
       </footer>

@@ -8,7 +8,7 @@ This is a hybrid personal academic website combining:
 1. **Jekyll static site** (root level) - Academic portfolio with publications, research, and blog
 2. **React SPA** (app/ directory) - Modern interactive frontend with dark mode and animations
 
-The site is deployed to GitHub Pages at `https://wenzel-liu.github.io/mypage/`.
+The site is deployed to GitHub Pages at `https://wenzel-liu.github.io/`.
 
 ## Architecture
 
@@ -25,7 +25,7 @@ The site is deployed to GitHub Pages at `https://wenzel-liu.github.io/mypage/`.
 - Vite + React 18 + TypeScript
 - Framer Motion for animations
 - TailwindCSS for styling
-- Multi-page SPA with 4 entry points: index, blog, experience, research
+- Multi-page SPA with 5 entry points: index, blog, projects, experience, research
 - Build output: `app/dist/` → copied to root for deployment
 
 ### Key Design Patterns
@@ -154,14 +154,14 @@ Edit `_data/navigation.yml` for Jekyll site navigation.
 ## Configuration
 
 ### Jekyll (_config.yml)
-- `baseurl: "/mypage"` - GitHub Pages subpath
+- `baseurl: ""` - GitHub Pages subpath
 - `remote_theme: "mmistakes/minimal-mistakes@4.27.1"`
 - Search disabled to reduce build time
 - Pagination: 5 posts per page
 
 ### Vite (app/vite.config.ts)
-- `base: '/lwh/'` - Base path for assets
-- Multi-page build with 4 entry points
+- `base: '/'` - Base path for assets
+- Multi-page build with 5 entry points
 - Path alias: `@` → `src/`
 - Output: `dist/` with assets in `app-assets/`
 
@@ -202,11 +202,11 @@ Edit `_data/navigation.yml` for Jekyll site navigation.
 3. Build React: `npm run build`
 4. Publish to root: `npm run publish:root`
 5. Commit both app/dist/ and root files
-6. Push to GitHub - Pages auto-deploys from master branch
+6. Push to GitHub - Pages auto-deploys from the main branch of wenzel-liu/wenzel-liu.github.io
 
 ## Important Notes
 
-- **Base URLs**: Jekyll uses `/mypage`, React uses `/lwh/` - ensure consistency
+- **Base URLs**: Jekyll uses an empty baseurl, React uses `/` - ensure consistency
 - **Dark Mode**: Managed by React context, persisted in localStorage
 - **Responsive**: Test both desktop (>1024px) and mobile (<640px)
 - **Animations**: Framer Motion requires proper key props for list items

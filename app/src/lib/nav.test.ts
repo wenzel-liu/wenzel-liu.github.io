@@ -8,20 +8,20 @@ describe('nav helpers', () => {
   });
 
   it('extracts html file name from nested path', () => {
-    expect(normalizePagePath('/lwh/experience.html')).toBe('experience.html');
+    expect(normalizePagePath('/experience.html')).toBe('experience.html');
   });
 
   it('matches active nav by file name', () => {
-    expect(isNavItemActive('/lwh/blog.html', 'blog.html')).toBe(true);
-    expect(isNavItemActive('/lwh/research.html', 'blog.html')).toBe(false);
-    expect(isNavItemActive('/lwh/projects.html', 'projects.html')).toBe(true);
-    expect(isNavItemActive('/lwh/projects.html', 'blog.html')).toBe(false);
+    expect(isNavItemActive('/blog.html', 'blog.html')).toBe(true);
+    expect(isNavItemActive('/research.html', 'blog.html')).toBe(false);
+    expect(isNavItemActive('/projects.html', 'projects.html')).toBe(true);
+    expect(isNavItemActive('/projects.html', 'blog.html')).toBe(false);
   });
 
   it('keeps the blog section active while reading a nested article', () => {
-    expect(isNavItemActive('/lwh/posts/academic-life-in-tokyo.html', 'blog.html')).toBe(true);
-    expect(isNavItemActive('/lwh/posts/academic-life-in-tokyo.html', 'index.html')).toBe(false);
-    expect(isNavItemActive('/lwh/medprism/', 'blog.html')).toBe(true);
-    expect(isNavItemActive('/lwh/sci-industrialist/abundance/', 'blog.html')).toBe(true);
+    expect(isNavItemActive('/posts/academic-life-in-tokyo.html', 'blog.html')).toBe(true);
+    expect(isNavItemActive('/posts/academic-life-in-tokyo.html', 'index.html')).toBe(false);
+    expect(isNavItemActive('/medprism/', 'blog.html')).toBe(true);
+    expect(isNavItemActive('/sci-industrialist/abundance/', 'blog.html')).toBe(true);
   });
 });

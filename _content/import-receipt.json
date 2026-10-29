@@ -37,7 +37,17 @@
     "sha256": "8ab3a5562deb40f8cf1471050afa5dba1cfa9ad7f7b029ece666c2334c3660e8",
     "body_sha256": "c9424807498cbc55f1770dfaa34c26f08bab9191523de0198698679c0fbea9be",
     "target": "_content/sci-industrialist/abundance.md",
-    "image_rewritten": true
+    "image_rewritten": true,
+    "post_import_edits": [
+      {
+        "date": "2026-10-29",
+        "reason": "Move the website from /lwh/ to the account root; preserve the same image",
+        "replace": {
+          "from": "/lwh/assets/articles/abundance-cover.png",
+          "to": "/assets/articles/abundance-cover.png"
+        }
+      }
+    ]
   },
   {
     "source": "bb8e7ba6-bb41-4aad-9423-8b6c3843dda0_ExportBlock-6ded1e65-188f-4165-8241-e77a737b8aac.zip",

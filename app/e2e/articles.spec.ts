@@ -10,7 +10,7 @@ test('writing cards use local collections with italic subtitles', async ({ page 
     ]) {
       const card = page.locator('.portfolio-collection-card').filter({ has: page.getByRole('heading', { name: title, exact: true }) });
       await expect(card.locator('em')).toHaveText(subtitle);
-      await expect(card.getByRole('link', { name: title, exact: true })).toHaveAttribute('href', '/lwh/' + route);
+      await expect(card.getByRole('link', { name: title, exact: true })).toHaveAttribute('href', '/' + route);
       await expect(card.getByRole('link', { name: title, exact: true })).not.toHaveAttribute('target', '_blank');
     }
   }
@@ -61,7 +61,7 @@ test('article bodies and collection links are readable without JavaScript', asyn
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   for (const article of articleIndex) {
-    await page.goto('http://127.0.0.1:4173/lwh/' + article.path);
+    await page.goto('http://127.0.0.1:4173/' + article.path);
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(article.title);
     await expect(page.locator('[data-article-body]')).toBeVisible();
   }
@@ -80,7 +80,7 @@ test('equations, tables and imported image render from local assets', async ({ p
   const cover = page.getByRole('img', { name: 'Abundance 书籍封面' });
   await cover.scrollIntoViewIfNeeded();
   await expect.poll(() => cover.evaluate(node => (node as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
-  await expect(cover).toHaveAttribute('src', /\/lwh\/assets\/articles\/abundance-cover\.png$/);
+  await expect(cover).toHaveAttribute('src', /\/assets\/articles\/abundance-cover\.png$/);
 });
 
 test('mobile menu and theme persist between static and React pages', async ({ page }) => {

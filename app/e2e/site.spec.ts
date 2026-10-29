@@ -123,7 +123,7 @@ test.describe('unified site', () => {
       await page.getByRole('menuitem', { name: 'Dark', exact: true }).click();
       await expect(shell).toHaveCSS('background-color', 'rgb(17, 30, 32)');
       await page.getByRole('navigation', { name: 'Primary', exact: true }).getByRole('link', { name: 'Experience', exact: true }).click();
-      await expect(page).toHaveURL(/\/lwh\/experience\.html$/);
+      await expect(page).toHaveURL(/\/experience\.html$/);
       await expect(page.locator('html')).toHaveAttribute('data-theme-preference', 'dark');
     });
   }
@@ -132,7 +132,7 @@ test.describe('unified site', () => {
     test(`article navigation works for ${note.file}`, async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.goto(note.file.includes('rna-metabolism') ? 'medprism/' : 'blog.html');
-      await page.locator('a[href="/lwh/' + note.file + '"]').click();
+      await page.locator('a[href="/' + note.file + '"]').click();
       await expect(page).toHaveTitle(note.title);
       await page.locator('[data-article-toc] summary').click();
       await page.getByRole('navigation', { name: '文章目录' }).getByRole('link').first().click();
@@ -141,7 +141,7 @@ test.describe('unified site', () => {
       const mobile = page.getByRole('navigation', { name: 'Mobile navigation' });
       await expect(mobile.getByRole('link', { name: 'Blog', exact: true })).toHaveAttribute('aria-current', 'page');
       await mobile.getByRole('link', { name: 'Bio', exact: true }).click();
-      await expect(page).toHaveURL(/\/lwh\/index\.html$/);
+      await expect(page).toHaveURL(/\/index\.html$/);
     });
   }
 
@@ -149,7 +149,7 @@ test.describe('unified site', () => {
     const routes: Record<string, string> = JSON.parse(readFileSync(new URL('../legacy-routes.json', import.meta.url), 'utf8'));
     for (const [from, to] of Object.entries(routes)) {
       await page.goto(from);
-      await expect(page).toHaveURL(new URL('/lwh/' + to, page.url()).href);
+      await expect(page).toHaveURL(new URL('/' + to, page.url()).href);
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
       const hash = to.split('#')[1];
       if (hash) await expect(page.locator('#' + hash)).toBeInViewport();
