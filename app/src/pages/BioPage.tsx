@@ -17,7 +17,7 @@ export function BioPage() {
       <section className="portfolio-hero" aria-labelledby="home-title">
         <div className="portfolio-hero-copy">
           <p className="portfolio-kicker">{profileSummary.location}<span aria-hidden="true"> / </span>{credentials.join(', ')}</p>
-          <h1 id="home-title">{name}<span className="portfolio-name-dot">.</span></h1>
+          <h1 id="home-title">{name}</h1>
           <p className="portfolio-lede">Cardiovascular researcher.<br /><span>Independent builder.</span></p>
           <p className="portfolio-intro">{homeIntro.description}</p>
           <div className="portfolio-actions">
@@ -55,7 +55,7 @@ export function BioPage() {
 
       <section id="writing" className="portfolio-section" aria-labelledby="writing-title">
         <header className="portfolio-section-heading">
-          <div><p className="portfolio-kicker">Blog</p><h2 id="writing-title">Writing</h2></div>
+          <div><p className="portfolio-kicker">Blogs</p><h2 id="writing-title">Writing</h2></div>
           <a className="portfolio-text-link" href="blog.html">All writing <FluentIcon name="arrow" size={14} /></a>
         </header>
         <div className="portfolio-blog-collections">

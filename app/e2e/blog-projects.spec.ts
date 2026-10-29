@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test';
 
-test('Blog and Projects have separate navigation and content', async ({ page }) => {
+test('Blogs and Projects have separate navigation and content', async ({ page }) => {
   await page.goto('blog.html');
   const navigation = page.getByRole('navigation', { name: 'Primary', exact: true });
-  await expect(navigation.getByRole('link')).toHaveText(['Bio', 'Blog', 'Projects', 'Experience', 'Papers & Talks']);
-  await expect(navigation.getByRole('link', { name: 'Blog', exact: true })).toHaveAttribute('aria-current', 'page');
+  await expect(navigation.getByRole('link')).toHaveText(['Bio', 'Blogs', 'Projects', 'Experience', 'Papers & Talks']);
+  await expect(navigation.getByRole('link', { name: 'Blogs', exact: true })).toHaveAttribute('aria-current', 'page');
   await expect(page.getByRole('main').getByRole('heading', { name: 'Focus Reader', exact: true })).toHaveCount(0);
   const collections = page.locator('#collections');
   const notes = page.locator('#notes');
@@ -25,21 +25,21 @@ test('Blog and Projects have separate navigation and content', async ({ page }) 
   await expect(emphasis).toHaveAttribute('aria-pressed', 'false');
 });
 
-test('Blog article links open the article directly and return to its collection', async ({ page }) => {
+test('Blogs article links open the article directly and return to its collection', async ({ page }) => {
   await page.goto('blog.html');
   const article = page.getByRole('list', { name: 'MedPrism recent articles' }).getByRole('link').first();
   const title = await article.locator('span').innerText();
   await article.click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(title);
   await expect(page.locator('[data-article-body]')).toBeVisible();
-  await expect(page.getByRole('navigation', { name: 'Primary', exact: true }).getByRole('link', { name: 'Blog', exact: true })).toHaveAttribute('aria-current', 'page');
+  await expect(page.getByRole('navigation', { name: 'Primary', exact: true }).getByRole('link', { name: 'Blogs', exact: true })).toHaveAttribute('aria-current', 'page');
   await page.getByRole('link', { name: '← MedPrism', exact: true }).first().click();
-  await page.getByRole('link', { name: '← Blog', exact: true }).click();
+  await page.getByRole('link', { name: '← Blogs', exact: true }).click();
   await expect(page).toHaveURL(/blog\.html#collections$/);
   await expect(page.getByRole('heading', { name: 'MedPrism', exact: true })).toBeInViewport();
 });
 
-test('the old Blog projects fragment opens the dedicated Projects page', async ({ page }) => {
+test('the old Blogs projects fragment opens the dedicated Projects page', async ({ page }) => {
   await page.goto('blog.html#projects');
   await expect(page).toHaveURL(/\/projects\.html$/);
   await expect(page.getByRole('heading', { name: 'Focus Reader', exact: true })).toBeVisible();

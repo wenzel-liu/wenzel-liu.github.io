@@ -1,7 +1,7 @@
 ---
 layout: portfolio-redirect
 redirect_to: /blog.html
-title: Blog
+title: Blogs
 permalink: /blog/
 ---
 
@@ -11,7 +11,7 @@ permalink: /blog/
       <div class="nav-links">
         <a href="/" class="nav-link">Home</a>
         <a href="/bio/" class="nav-link">Bio</a>
-        <a href="/blog/" class="nav-link active">Blog</a>
+        <a href="/blog/" class="nav-link active">Blogs</a>
         <a href="/experience/" class="nav-link">Experience</a>
         <a href="/projects/" class="nav-link">Projects</a>
         <a href="/uses/" class="nav-link">Uses</a>
@@ -24,7 +24,7 @@ permalink: /blog/
 
   <main class="main-content">
     <div class="content-container">
-      <h1 class="main-title">Blog</h1>
+      <h1 class="main-title">Blogs</h1>
       
       <div class="search-container">
         <input type="text" class="search-box" placeholder="Search blog posts..." id="searchInput">

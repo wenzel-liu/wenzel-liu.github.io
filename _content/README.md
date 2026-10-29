@@ -2,7 +2,7 @@
 
 The articles live in this repository and are published on the existing GitHub Pages site. Reading a page does not call Notion, a database, or a rendering server.
 
-The Blog page places MedPrism and Sci-Industrialist collections above personal notes. Software such as Focus Reader lives on the separate Projects page.
+The Blogs page places MedPrism and Sci-Industrialist collections above personal notes. Software such as Focus Reader lives on the separate Projects page.
 
 ## Collections
 
