@@ -96,7 +96,7 @@ test('mobile menu and theme persist between static and React pages', async ({ pa
   await expect(toggle).toBeFocused();
   await expect(menu).toBeHidden();
   await toggle.click();
-  await menu.getByRole('link', { name: 'Blog', exact: true }).click();
+  await menu.getByRole('link', { name: 'Blogs', exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme-preference', 'dark');
   await expect(page.locator('#notes .portfolio-note-row')).toHaveCount(2);
 });

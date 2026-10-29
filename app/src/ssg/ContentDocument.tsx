@@ -39,7 +39,7 @@ export function renderCollection(id: CollectionId, articles: Article[]) {
   const categories = [...new Set(articles.map((article) => article.category))];
   return renderToStaticMarkup(<ThemeProvider><SiteShell currentPath={siteHref(collection.path)}>
     <div className="portfolio-page portfolio-library">
-      <a href={siteHref('blog.html#collections')} className="portfolio-text-link portfolio-library-back">← Blog</a>
+      <a href={siteHref('blog.html#collections')} className="portfolio-text-link portfolio-library-back">← Blogs</a>
       <header className="portfolio-collection-intro">
         <p className="portfolio-kicker">{collection.kicker}</p>
         <h1>{collection.title}</h1>

@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 
 const pages = [
   { file: 'index.html', title: /Bio \| Wenhao Liu/i },
-  { file: 'blog.html', title: /Blog \| Wenhao Liu/i },
+  { file: 'blog.html', title: /Blogs \| Wenhao Liu/i },
   { file: 'projects.html', title: /Projects \| Wenhao Liu/i },
   { file: 'experience.html', title: /Experience \| Wenhao Liu/i },
   { file: 'research.html', title: /Papers & Talks \| Wenhao Liu/i },
@@ -139,7 +139,7 @@ test.describe('unified site', () => {
       await expect(page.locator('#section-1')).toBeInViewport();
       await page.getByRole('button', { name: 'Toggle navigation' }).click();
       const mobile = page.getByRole('navigation', { name: 'Mobile navigation' });
-      await expect(mobile.getByRole('link', { name: 'Blog', exact: true })).toHaveAttribute('aria-current', 'page');
+      await expect(mobile.getByRole('link', { name: 'Blogs', exact: true })).toHaveAttribute('aria-current', 'page');
       await mobile.getByRole('link', { name: 'Bio', exact: true }).click();
       await expect(page).toHaveURL(/\/index\.html$/);
     });

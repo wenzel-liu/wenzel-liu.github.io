@@ -11,7 +11,7 @@ permalink: /uses/
       <div class="nav-links">
         <a href="/" class="nav-link">Home</a>
         <a href="/bio/" class="nav-link">Bio</a>
-        <a href="/blog/" class="nav-link">Blog</a>
+        <a href="/blog/" class="nav-link">Blogs</a>
         <a href="/experience/" class="nav-link">Experience</a>
         <a href="/projects/" class="nav-link">Projects</a>
         <a href="/uses/" class="nav-link active">Uses</a>
