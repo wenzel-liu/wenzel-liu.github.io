@@ -8,7 +8,7 @@ The Blogs page places MedPrism and Sci-Industrialist collections above personal 
 
 - `medprism/`: biopharma and medical research articles.
 - `sci-industrialist/`: technology, manufacturing, institutions, and historical materialism.
-- `notes/`: personal notes and everyday life. These appear in the blog's Notes & essays list.
+- `notes/`: personal notes and everyday life. The Blogs page previews the latest three entries; its Notes & essays heading and "View all" link open the complete collection at `/notes/`.
 
 Each new article is a Markdown file with a short header:
 
@@ -42,7 +42,7 @@ Use `$...$` for inline equations and `$$...$$` for display equations. Formula la
 
 `npm run dev` also generates the content before starting. After editing an article while the development server is running, run `npm run content:generate` and reload.
 
-The three older `.html` article bodies are retained for lossless migration. Their `path` metadata preserves the original `posts/*.html` URLs. New articles should use Markdown.
+The remaining older `.html` article body is retained for lossless migration. Its `path` metadata preserves the original `posts/*.html` URL. New articles should use Markdown.
 
 The `_content` folder is excluded from GitHub Pages by Jekyll's underscore convention. `app/` is also excluded; only the generated public pages and assets are served. The article list contains metadata, never all article bodies. Static articles reuse the site's React layout during the build, and ship only small navigation and theme controls.
 

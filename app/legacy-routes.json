@@ -8,7 +8,5 @@
   "uses/index.html": "experience.html#skills",
   "publications/index.html": "research.html",
   "research/index.html": "research.html",
-  "academic/personal/academic-life-in-tokyo/index.html": "posts/academic-life-in-tokyo.html",
-  "research/cardiology/rna-metabolism-heart-disease/index.html": "posts/rna-metabolism-heart-disease.html",
-  "blog/personal/welcome-to-my-blog/index.html": "posts/welcome-to-my-blog.html"
+  "research/cardiology/rna-metabolism-heart-disease/index.html": "posts/rna-metabolism-heart-disease.html"
 }

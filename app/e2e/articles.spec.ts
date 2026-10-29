@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { articleIndex } from '../src/content/article-index';
+import { articleIndex, personalNotes } from '../src/content/article-index';
 
 test('writing cards use local collections with italic subtitles', async ({ page }) => {
   for (const file of ['index.html', 'blog.html']) {
@@ -16,7 +16,7 @@ test('writing cards use local collections with italic subtitles', async ({ page 
   }
   await page.getByRole('link', { name: 'View all Sci-Industrialist articles' }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Sci-Industrialist');
-  await expect(page.locator('.portfolio-note-row')).toHaveCount(5);
+  await expect(page.locator('.portfolio-note-row')).toHaveCount(articleIndex.filter(article => article.collection === 'sci-industrialist').length);
   await page.getByRole('link', { name: 'MedPrism ↗', exact: true }).click();
   await expect(page.locator('.portfolio-note-row')).toHaveCount(3);
 });
@@ -41,12 +41,14 @@ for (const article of articleIndex) {
       await page.setViewportSize({ width, height: 844 });
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     }
-    await page.locator('[data-article-toc] summary').click();
-    const contentsLink = page.locator('[data-article-toc] nav a').first();
-    if (await contentsLink.count()) {
+    if (await page.locator('[data-article-body] :is(h2, h3, h4, h5, h6)').count()) {
+      await page.locator('[data-article-toc] summary').click();
+      const contentsLink = page.locator('[data-article-toc] nav a').first();
       const target = await contentsLink.getAttribute('href');
       await contentsLink.click();
       await expect(page.locator(target!)).toBeInViewport();
+    } else {
+      await expect(page.locator('[data-article-toc]')).toHaveCount(0);
     }
     await page.getByRole('button', { name: 'Theme options' }).click();
     await page.getByRole('menuitem', { name: 'Dark', exact: true }).click();
@@ -65,6 +67,13 @@ test('article bodies and collection links are readable without JavaScript', asyn
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(article.title);
     await expect(page.locator('[data-article-body]')).toBeVisible();
   }
+  await page.goto('http://127.0.0.1:4173/notes/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Notes & essays');
+  await expect(page.locator('.portfolio-note-row h3')).toHaveText(personalNotes.map(note => note.title));
+  await page.locator('.portfolio-note-row').last().click();
+  await expect(page.locator('[data-article-body]')).toBeVisible();
+  await page.getByRole('link', { name: '← Notes & essays', exact: true }).first().click();
+  await expect(page).toHaveURL(/\/notes\/$/);
   await context.close();
 });
 
@@ -98,5 +107,5 @@ test('mobile menu and theme persist between static and React pages', async ({ pa
   await toggle.click();
   await menu.getByRole('link', { name: 'Blogs', exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('data-theme-preference', 'dark');
-  await expect(page.locator('#notes .portfolio-note-row')).toHaveCount(2);
+  await expect(page.getByRole('list', { name: 'Notes & essays recent articles' }).getByRole('link')).toHaveCount(Math.min(3, personalNotes.length));
 });
