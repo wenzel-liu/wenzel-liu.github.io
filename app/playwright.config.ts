@@ -18,6 +18,11 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] }
+    },
+    {
+      name: 'webkit-search',
+      testMatch: 'search*.spec.ts',
+      use: { ...devices['Desktop Safari'] }
     }
   ]
 });

@@ -41,6 +41,7 @@ app/medprism/
 app/sci-industrialist/
 app/notes/
 app/posts/
+app/public/search/
 
 # Test output
 test-results

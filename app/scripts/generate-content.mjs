@@ -3,18 +3,21 @@ import { readFile, writeFile, mkdir, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadArticles } from './article-content.mjs';
+import { createSearchIndex } from './search-index.mjs';
 
 const app = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const root = path.dirname(app);
 const renderer = path.join(app, '.content-renderer.mjs');
+const articles = await loadArticles(path.join(root, '_content'));
+const metadata = articles.map(({ html, headings, math, source_id, ...metadata }) => metadata);
+await writeFile(path.join(app, 'src/content/article-index.ts'), `// Generated from _content by npm run content:generate. No article bodies are shipped here.\nexport const articleIndex = ${JSON.stringify(metadata,null,2)};\nexport const personalNotes = ${JSON.stringify(metadata.filter(article => article.collection === 'notes').map(article => ({title: article.title, description: article.description, date: article.date, category: article.category, href: '/' + article.path})), null, 2)};\n`);
 await build({
   entryPoints: [path.join(app, 'src/ssg/ContentDocument.tsx')], outfile: renderer,
   bundle: true, platform: 'node', format: 'esm', jsx: 'automatic',
   external: ['react', 'react-dom/server'], tsconfig: path.join(app, 'tsconfig.json'),
   define: { 'import.meta.env.BASE_URL': JSON.stringify('/') }
 });
-const { renderArticle, renderCollection, collections } = await import(pathToFileURL(renderer));
-const articles = await loadArticles(path.join(root, '_content'));
+const { renderArticle, renderCollection, renderSearchPages, collections } = await import(pathToFileURL(renderer));
 const previous = JSON.parse(await readFile(path.join(app, '.content-pages.json'), 'utf8').catch(() => '[]'));
 for (const name of previous) {
   if (/^(posts|medprism|sci-industrialist|notes)\/[a-z0-9/-]+\.html$/.test(name)) await rm(path.join(app, name), { force: true });
@@ -34,12 +37,19 @@ for (const article of articles) {
   const related = articles.filter(other => other.collection === article.collection && other.path !== article.path);
   await writePage(article.path, article.title, article.description, renderArticle(article, related), article.lang, article.math, article);
 }
+const collectionPages = {};
 for (const collection of Object.keys(collections)) {
   const items = articles.filter(article => article.collection === collection);
-  await writePage(`${collection}/index.html`, collections[collection].title, collections[collection].description, renderCollection(collection, items));
+  collectionPages[collection] = renderCollection(collection, items);
+  await writePage(`${collection}/index.html`, collections[collection].title, collections[collection].description, collectionPages[collection]);
 }
-const metadata = articles.map(({ html, headings, math, source_id, ...metadata }) => metadata);
-await writeFile(path.join(app, 'src/content/article-index.ts'), `// Generated from _content by npm run content:generate. No article bodies are shipped here.\nexport const articleIndex = ${JSON.stringify(metadata,null,2)};\nexport const personalNotes = ${JSON.stringify(metadata.filter(article => article.collection === 'notes').map(article => ({title: article.title, description: article.description, date: article.date, category: article.category, href: '/' + article.path})), null, 2)};\n`);
+const searchIndex = createSearchIndex(articles, collections, renderSearchPages(), collectionPages);
+const searchDirectory = path.join(app, 'public/search');
+await mkdir(searchDirectory, { recursive: true });
+await writeFile(path.join(searchDirectory, 'index.json'), JSON.stringify(searchIndex));
+for (const id of Object.keys(collections)) {
+  await writeFile(path.join(searchDirectory, `${id}.json`), JSON.stringify(searchIndex.filter(item => item.kind === 'article' && item.collection === id)));
+}
 await writeFile(path.join(app, '.content-pages.json'), JSON.stringify(pagePaths, null, 2) + '\n');
 await rm(renderer);
-console.log(`Generated ${articles.length} independent articles and ${Object.keys(collections).length} collections.`);
+console.log(`Generated ${articles.length} independent articles, ${Object.keys(collections).length} collections and ${searchIndex.length} searchable pages.`);

@@ -9,11 +9,11 @@
     "test": "vitest run --config app/vitest.config.ts",
     "test:watch": "vitest --config app/vitest.config.ts",
     "test:e2e": "npm run build && playwright test --config app/playwright.config.ts",
-    "test:e2e:install": "playwright install chromium",
+    "test:e2e:install": "playwright install chromium webkit",
     "publish:root": "node app/scripts/publish-root.mjs",
     "release": "npm run build && npm run publish:root",
     "content:generate": "node app/scripts/generate-content.mjs",
-    "test:content": "node --test app/scripts/article-content.test.mjs"
+    "test:content": "node --test app/scripts/article-content.test.mjs app/scripts/search-index.test.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

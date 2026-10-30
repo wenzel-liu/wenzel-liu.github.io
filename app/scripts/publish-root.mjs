@@ -38,13 +38,14 @@ async function syncAssets() {
 
   await rm(targetAssets, { recursive: true, force: true });
   await cp(sourceAssets, targetAssets, { recursive: true, force: true });
+  await cp(path.join(distDir, 'search'), path.join(repoRoot, 'search'), { recursive: true, force: true });
 }
 
 async function main() {
   await ensureBuildExists();
   await copyHtmlFiles();
   await syncAssets();
-  process.stdout.write('Published app/dist HTML files and app-assets to repository root.\n');
+  process.stdout.write('Published app/dist HTML files, app-assets and search indexes to repository root.\n');
 }
 
 main().catch((error) => {

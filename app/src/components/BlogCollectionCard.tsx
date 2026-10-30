@@ -14,7 +14,8 @@ export function BlogCollectionCard({ collection, compact = false }: { collection
         <ul className="portfolio-collection-latest" aria-label={`${collection.title} recent articles`}>
           {collection.articles.slice(0, 3).map(article => (
             <li key={article.path}>
-              <a href={siteHref(article.path)} lang={article.lang}>
+              <a href={siteHref(article.path)} lang={article.lang}
+                id={`article-${article.collection}-${article.slug}`} data-search-target data-search-title={article.title}>
                 <time dateTime={article.date}>{article.date}</time><span>{article.title}</span>
               </a>
             </li>
