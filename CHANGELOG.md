@@ -6,15 +6,13 @@
 
 This log summarizes website updates in reverse merge order, using Japan Standard Time (JST). Entries are based on each PR’s description and merge record. PR numbers are separate for the current and former repositories; links lead to the original changes.
 
-## 待发布 / Unreleased
+## 当前仓库 / Current repository: wenzel-liu.github.io
 
-### 中英双语仓库说明与 PR 历史 / Bilingual repository documentation and PR history
+### 2026-10-30 · [PR #5](https://github.com/wenzel-liu/wenzel-liu.github.io/pull/5) · 中英双语仓库说明与 PR 历史 / Bilingual repository documentation and PR history
 
 **中文：** 用中英文补充 README，介绍网站、搜索和维护方式。汇总当前仓库与迁移前 `lwh` 仓库的全部已合并 PR，逐条说明更新内容，并注明后来调整过的设计。增加后续维护双语记录的约定；本次仅修改文档。
 
 **English:** Expanded the README in Chinese and English to explain the site, search, and maintenance workflow. Documented all merged PRs in the current and former `lwh` repositories, including later revisions to earlier design choices. Added guidance for future bilingual PR notes. This update changes documentation only.
-
-## 当前仓库 / Current repository: wenzel-liu.github.io
 
 ### 2026-10-30 · [PR #4](https://github.com/wenzel-liu/wenzel-liu.github.io/pull/4) · 全站搜索与文章定位 / Site search and article positioning
 

@@ -16,6 +16,7 @@ These are merged updates in the current repository, dated in Japan Standard Time
 
 | 合并日期 / Merged | PR | 中文摘要 | English summary |
 | --- | --- | --- | --- |
+| 2026-10-30 | [#5](https://github.com/wenzel-liu/wenzel-liu.github.io/pull/5) | 补充中英双语仓库说明与完整 PR 更新记录，并约定后续记录方式。 | Added bilingual repository documentation, the complete PR changelog, and guidance for future update notes. |
 | 2026-10-30 | [#4](https://github.com/wenzel-liu/wenzel-liu.github.io/pull/4) | 新增全站与栏目内搜索；修复点击跳转，并自动定位到文章标题或对应列表条目。 | Added global and collection search, reliable result navigation, and automatic positioning at article titles or matching entries. |
 | 2026-10-29 | [#3](https://github.com/wenzel-liu/wenzel-liu.github.io/pull/3) | 新增公开随笔、独立 Notes 栏目与栏目图标，清理旧示例文章。 | Added public journal entries, a dedicated Notes collection, and collection branding; removed old sample posts. |
 | 2026-10-29 | [#2](https://github.com/wenzel-liu/wenzel-liu.github.io/pull/2) | 统一使用 Blogs，去掉姓名后的装饰点，明确衬线标题与无衬线导航的分工。 | Standardized “Blogs,” removed the dot after the name, and clarified serif headings versus sans-serif navigation. |
