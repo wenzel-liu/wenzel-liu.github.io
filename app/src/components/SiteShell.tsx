@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 import { siteHref } from '@/lib/nav';
 import { PrimaryNav } from './PrimaryNav';
 import { ThemeControl } from './ThemeControl';
+import { SearchBox } from './SearchBox';
+import { initializeAnchorNavigation } from '@/lib/anchor-navigation';
 
 interface SiteShellProps {
   children: ReactNode;
@@ -16,18 +18,7 @@ export function SiteShell({ children, currentPath: suppliedPath }: SiteShellProp
 
   const currentPath = suppliedPath ?? (typeof window !== 'undefined' ? window.location.pathname : '/index.html');
 
-  useEffect(() => {
-    // React mounts after the browser's first attempt to resolve a URL fragment.
-    const frame = window.requestAnimationFrame(() => {
-      if (!window.location.hash) return;
-      try {
-        document.getElementById(decodeURIComponent(window.location.hash.slice(1)))?.scrollIntoView();
-      } catch {
-        // An invalid URL fragment should not prevent the page from loading.
-      }
-    });
-    return () => window.cancelAnimationFrame(frame);
-  }, []);
+  useEffect(initializeAnchorNavigation, []);
 
   useEffect(() => {
     if (!mobileOpen) {
@@ -90,6 +81,8 @@ export function SiteShell({ children, currentPath: suppliedPath }: SiteShellProp
           </a>
 
           <PrimaryNav currentPath={currentPath} className="top-nav" ariaLabel="Primary" />
+
+          <SearchBox />
 
           <div className="fds-topbar-actions">
             <a className="fds-nav-contact" href="mailto:wenzel_liu@outlook.jp">Contact</a>

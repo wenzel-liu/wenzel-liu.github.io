@@ -4,6 +4,12 @@ import { SiteShell } from '@/components/SiteShell';
 import { Tags } from '@/components/PortfolioParts';
 import { collections, type CollectionId } from '@/content/collections';
 import { siteHref } from '@/lib/nav';
+import { SearchBox } from '@/components/SearchBox';
+import { BioPage } from '@/pages/BioPage';
+import { BlogPage } from '@/pages/BlogPage';
+import { ProjectsPage } from '@/pages/ProjectsPage';
+import { ExperiencePage } from '@/pages/ExperiencePage';
+import { ResearchPage } from '@/pages/ResearchPage';
 
 export interface Article {
   title: string;
@@ -22,8 +28,9 @@ export interface Article {
 }
 
 function ArticleList({ articles }: { articles: Article[] }) {
-  return <div className="portfolio-note-list">{articles.map((article, index) => (
-    <a className="portfolio-note-row portfolio-library-row" href={siteHref(article.path)} key={article.path} lang={article.lang}>
+  return <div className="portfolio-note-list" data-collection-list>{articles.map((article, index) => (
+    <a className="portfolio-note-row portfolio-library-row" href={siteHref(article.path)} key={article.path} lang={article.lang}
+      id={`article-${article.collection}-${article.slug}`} data-search-target data-search-title={article.title}>
       <span className="portfolio-note-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
       <div>
         <p className="portfolio-article-meta"><time dateTime={article.date}>{article.date}</time><span>{article.category}</span></p>
@@ -63,7 +70,10 @@ export function renderCollection(id: CollectionId, articles: Article[]) {
             ))}
           </nav>
         </aside>
-        <ArticleList articles={articles} />
+        <div className="portfolio-collection-content">
+          <SearchBox collection={id} title={collection.title} />
+          <ArticleList articles={articles} />
+        </div>
       </section>
     </div>
   </SiteShell></ThemeProvider>);
@@ -77,7 +87,7 @@ export function renderArticle(article: Article, related: Article[]) {
       <header className="portfolio-article-header">
         <a className="portfolio-text-link" href={siteHref(collection.path)}>← {collection.title}</a>
         <p className="portfolio-kicker"><time dateTime={article.date}>{article.date}</time><span>{article.category}</span>{article.updated && article.updated !== article.date ? <span>Updated {article.updated}</span> : null}</p>
-        <h1>{article.title}</h1>
+        <h1 id="article-title" data-search-target tabIndex={-1}>{article.title}</h1>
         <Tags items={article.tags} label={article.lang === 'en' ? 'Article topics' : '文章标签'} />
       </header>
       <div className="portfolio-article-layout">
@@ -101,3 +111,13 @@ export function renderArticle(article: Article, related: Article[]) {
 }
 
 export { collections };
+
+export function renderSearchPages() {
+  return [
+    { path: 'index.html', title: 'Bio · Wenhao Liu', page: <BioPage /> },
+    { path: 'blog.html', title: 'Blogs', page: <BlogPage /> },
+    { path: 'projects.html', title: 'Projects · Focus Reader', page: <ProjectsPage /> },
+    { path: 'experience.html', title: 'Experience', page: <ExperiencePage /> },
+    { path: 'research.html', title: 'Papers & Talks', page: <ResearchPage /> }
+  ].map(({ page, ...metadata }) => ({ ...metadata, html: renderToStaticMarkup(page) }));
+}

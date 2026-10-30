@@ -1,5 +1,9 @@
 // Static article content is already in the HTML. Only shared controls need JavaScript.
 import { applyThemeToDocument, normalizeThemePreference, persistThemePreference, readStoredTheme } from '@/lib/theme';
+import { initializeSearch } from '@/lib/search-ui';
+import { initializeAnchorNavigation } from '@/lib/anchor-navigation';
+
+document.querySelectorAll<HTMLElement>('[data-search-widget]').forEach(root => initializeSearch(root));
 
 const control = document.querySelector<HTMLElement>('[data-theme-control]')!;
 const themeToggle = control.querySelector<HTMLButtonElement>('[data-theme-toggle]')!;
@@ -54,3 +58,4 @@ document.addEventListener('keydown', event => {
 window.addEventListener('resize', () => { if (innerWidth > 980) closeNavigation(); });
 const contents = document.querySelector<HTMLDetailsElement>('[data-article-toc]');
 if (contents && matchMedia('(max-width: 720px)').matches) contents.open = false;
+initializeAnchorNavigation();
